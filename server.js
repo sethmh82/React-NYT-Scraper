@@ -1,3 +1,17 @@
+var express = require('express');
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var Article = require('./models/Article.js');
+
+//LOAD EXPRESS
+var app = express();
+// BODY PARSER
+var PORT = process.env.PORT || 3000;
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.text());
+app.use(bodyParser.json({type:'application/vnd.api+json'}));
+app.use(express.static('./public'));
 
 // LOAD THE INDEX.HTML
 app.get('/', function(req, res){
@@ -6,14 +20,10 @@ app.get('/', function(req, res){
 
 // LOAD SAVED ARTICLES
 app.get('/api/saved', function(req, res) {
-  Article.find({})
-    .exec(function(err, doc){
+  Article.find({}).exec(function(err, doc){
       if(err){
         console.log(err);
-      }
-      else {
-        res.send(doc);
-      }
+      } else { res.send(doc); }
     })
 });
 
@@ -40,5 +50,5 @@ app.delete('/api/saved/', function(req, res){
 
 // LISTENING PORT
 app.listen(PORT, function() {
-  console.log("App listening on PORT: " + PORT);
+  console.log("LISTENDING ON PORT: " + PORT);
 });
