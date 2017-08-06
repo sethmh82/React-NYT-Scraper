@@ -1,6 +1,7 @@
 var React = require('react');
 var Router = require('react-router')
 
+// MAIN HTML
 var Main = React.createClass({
 
   render: function(){
