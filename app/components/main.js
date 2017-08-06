@@ -1,5 +1,5 @@
-var React = require('react');
-var Router = require('react-router')
+import React from "react";
+import Router from "react-router";
 
 // MAIN HTML
 var Main = React.createClass({

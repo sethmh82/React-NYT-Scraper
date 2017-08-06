@@ -1,5 +1,6 @@
-var React = require('react');
-var Router = require('react-router');
+import React from "react";
+import Router from "react-router";
+
 var Run = require('./run');
 var Results = require('./results');
 var Configure = require('./configure');

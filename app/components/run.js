@@ -1,40 +1,34 @@
-var React = require('react');
+import React from "react";
 
 // Create RUN Class
 var Run = React.createClass({
 
-  getInitialState: function(){
+getInitialState: function(){
     return {
       search: "",
       start: "",
       end: "",
     }
-  },
+},
 
-
-    handleChange: function(event) {
-
+handleChange: function(event) {
       var newState = {};
       newState[event.target.id] = event.target.value;
       this.setState(newState);
-    },
+},
 
   //RENDER THE HTML  
-  render: function(){
+render: function(){
 
-    return(
+return(
       <div className ="main-container">
-
           <div className="row">
             <div className="col-lg-12">
-
               <div className="panel panel-primary">
                 <div className="panel-heading">
                   <h1 className="panel-title"><strong><i className="fa fa-newspaper-o" aria-hidden="true"></i>  Query</strong></h1>
                 </div>
                 <div className="panel-body">
-
-                 
 
                     </div>
 
@@ -48,7 +42,6 @@ var Run = React.createClass({
 
             </div>
           </div>
-
       </div>
 
     )
