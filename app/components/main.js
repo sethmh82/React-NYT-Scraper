@@ -1,5 +1,7 @@
 import React from "react";
 import Router from "react-router";
+var React = require('react');
+var Router = require('react-router')
 
 var Main = React.createClass({
 
@@ -8,7 +10,10 @@ var Main = React.createClass({
     return(
 
       <div className="main-container">
+
+
         <div className="container">
+
           <nav className="navbar navbar-default" role="navigation">
             <div className="container-fluid">
               <div className="navbar-header">
