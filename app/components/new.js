@@ -1,7 +1,7 @@
 import React from "react";
 import Router from "react-router";
 
-var configure = require('./configure');
+var nytapi = require('./nytapi');
 
 var Main = React.createClass({
 
@@ -13,13 +13,80 @@ var Main = React.createClass({
 
   componentDidMount: function(){
 
-    configure.getSaved()
-      .then(function(articleData){
-        this.setState({
-          newestArticle: articleData.data
-        });
+    nytapi.getSaved().then(function(articleData){
+        this.setState({ newestArticle: articleData.data }); }.bind(this))
+  },
+
+  handleClick: function(item, event)  {
+
+    nytapi.deleteSaved(item.title, item.date, item.url).then(function(data){
+
+      nytapi.getSaved().then(function(articleData){
+
+          this.setState({ newestArticle: articleData.data });}.bind(this)) }.bind(this))
+  },
+
+  render: function()  {
+
+    if (this.state.newestArticle == "") {
+      return(
+
+        <li className="list-group-item">
+          <h3>
+              <span><em>Save your first article...</em></span>
+          </h3>
+        </li>
+
+      )
+    }
+
+    else {
+
+      var articles = this.state.newestArticle.map(function(article, index){
+
+        return(
+
+            <div key={index}>
+              <li className="list-group-item" >
+                <h3>
+                    <span><em>{article.title}</em></span>
+                    <span className="btn-group pull-right" >
+                      <a href={article.url} target="_blank"><button className="btn btn-default ">View Article</button></a>
+                      <button className="btn btn-primary" onClick={this.handleClick.bind(this, article)}>Delete</button>
+                    </span>
+                </h3>
+                <p>Date Published: {article.date}</p>
+              </li>
+            </div>
+        )
 
       }.bind(this))
+
+    }
+
+
+    return(
+
+      <div className="main-container">
+        <div className="row">
+          <div className="col-lg-12">
+            <div className="panel panel-primary">
+              <div className="panel-heading">
+                <h1 className="panel-title">
+                  <strong><i className="fa fa-download" aria-hidden="true"></i> New! </strong>
+                </h1>
+              </div>
+              <div className="panel-body">
+                <ul className="list-group">
+                  Placeholder Here
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    )
   }
 });
 

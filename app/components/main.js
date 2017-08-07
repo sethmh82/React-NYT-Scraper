@@ -1,7 +1,6 @@
 import React from "react";
 import Router from "react-router";
 
-// MAIN HTML
 var Main = React.createClass({
 
   render: function(){

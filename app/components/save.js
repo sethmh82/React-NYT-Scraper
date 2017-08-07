@@ -1,7 +1,7 @@
 
 // DEPENDENCIES
-var React = require('react');
-var Router = require('react-router');
+import React from "react";
+import Router from "react-router";
 
 
 // MAIN
@@ -17,10 +17,10 @@ var Main = React.createClass({
 
   handleClick: function(item, event){
 
-    configure.deleteSaved(item.title, item.date, item.url)
+    nytapi.deleteSaved(item.title, item.date, item.url)
       .then(function(data){
 
-      configure.getSaved()
+      nytapi.getSaved()
         .then(function(articleData){
           this.setState({
             savedArticles: articleData.data
